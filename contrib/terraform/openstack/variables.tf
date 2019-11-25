@@ -44,6 +44,26 @@ variable "number_of_gfs_nodes_no_floating_ip" {
   default = 0
 }
 
+variable "bastion_root_volume_size_in_gb" {
+  default = 0
+}
+
+variable "etcd_root_volume_size_in_gb" {
+  default = 0
+}
+
+variable "master_root_volume_size_in_gb" {
+  default = 0
+}
+
+variable "node_root_volume_size_in_gb" {
+  default = 0
+}
+
+variable "gfs_root_volume_size_in_gb" {
+  default = 0
+}
+
 variable "gfs_volume_size_in_gb" {
   default = 75
 }
@@ -55,12 +75,12 @@ variable "public_key_path" {
 
 variable "image" {
   description = "the image to use"
-  default     = "ubuntu-14.04"
+  default     = ""
 }
 
 variable "image_gfs" {
   description = "Glance image to use for GlusterFS"
-  default     = "ubuntu-16.04"
+  default     = ""
 }
 
 variable "ssh_user" {
@@ -103,6 +123,12 @@ variable "network_name" {
   default     = "internal"
 }
 
+variable "network_dns_domain" {
+  description = "dns_domain for the internal network"
+  type        = "string"
+  default     = null
+}
+
 variable "use_neutron" {
   description = "Use neutron"
   default     = 1
@@ -125,6 +151,11 @@ variable "floatingip_pool" {
   default     = "external"
 }
 
+variable "wait_for_floatingip" {
+  description = "Terraform will poll the instance until the floating IP has been associated."
+  default     = "false"
+}
+
 variable "external_net" {
   description = "uuid of the external/public network"
 }
@@ -145,6 +176,24 @@ variable "bastion_allowed_remote_ips" {
   default     = ["0.0.0.0/0"]
 }
 
+variable "master_allowed_remote_ips" {
+  description = "An array of CIDRs allowed to access API of masters"
+  type        = "list"
+  default     = ["0.0.0.0/0"]
+}
+
+variable "k8s_allowed_remote_ips" {
+  description = "An array of CIDRs allowed to SSH to hosts"
+  type        = "list"
+  default     = []
+}
+
+variable "k8s_allowed_egress_ips" {
+  description = "An array of CIDRs allowed for egress traffic"
+  type        = "list"
+  default     = ["0.0.0.0/0"]
+}
+
 variable "worker_allowed_ports" {
   type = "list"
 
@@ -156,4 +205,8 @@ variable "worker_allowed_ports" {
       "remote_ip_prefix" = "0.0.0.0/0"
     },
   ]
+}
+
+variable "use_access_ip" {
+  default = 1
 }

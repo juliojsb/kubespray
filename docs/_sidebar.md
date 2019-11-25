@@ -3,7 +3,6 @@
 * [Getting started](/docs/getting-started.md)
 * [Ansible](docs/ansible.md)
 * [Variables](/docs/vars.md)
-* [Ansible](/docs/ansible.md)
 * Operations
   * [Integration](docs/integration.md)
   * [Upgrades](/docs/upgrades.md)
@@ -20,6 +19,7 @@
   * [AWS](docs/aws.md)
   * [Azure](docs/azure.md)
   * [OpenStack](/docs/openstack.md)
+  * [Packet](/docs/packet.md)
   * [vSphere](/docs/vsphere.md)
 * Operating Systems
   * [Atomic](docs/atomic.md)

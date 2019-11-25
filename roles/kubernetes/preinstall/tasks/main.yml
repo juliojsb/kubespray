@@ -32,6 +32,16 @@
   when:
     - dns_mode != 'none'
     - resolvconf_mode == 'host_resolvconf'
+    - systemd_resolved_enabled.rc != 0
+  tags:
+    - bootstrap-os
+    - resolvconf
+
+- import_tasks: 0061-systemd-resolved.yml
+  when:
+    - dns_mode != 'none'
+    - resolvconf_mode == 'host_resolvconf'
+    - systemd_resolved_enabled.rc == 0
   tags:
     - bootstrap-os
     - resolvconf
@@ -90,6 +100,6 @@
   when:
     - not dns_late
     - azure_check.stat.exists
-    - ansible_distribution in ["CentOS","RedHat"]
+    - ansible_distribution in ["CentOS","RedHat","OracleLinux"]
   tags:
     - bootstrap-os
